@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %} Jugadores {% endblock %}
+{% block cabecera %} 
+{% endblock %}
+
+{% block cuerpo %}
+<div class="text-center my-4">
+    <a href="{% url 'deporApp:inicio' %}"> <img  src="{% static 'img/logo.png' %}" alt="logo" > </a>
+</div>
+<h2 class="text-center mb-4" style="color: #1EB1BB; font-weight: bold;"> Jugadores </h2>
+
+<div class="table-responsive">
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">Nombre</th>
+                <th class="text-center" scope="col">Primer apellido</th>
+                <th class="text-center" scope="col">Segundo pellido</th>
+                <th class="text-center" scope="col">Equipo</th>
+                <th class="text-center" scope="col">Teléfono</th>
+                <th class="text-center" scope="col">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for jugador in object_list %}
+            <tr>
+                <td><a href="{% url 'deporApp:detalle_jugador' jugador.pk %}" style="display: inline-block; text-align: center; width: 100%;">{{ jugador.nombre }}</a></td>
+                <td class="text-center">{{ jugador.apellido1 }}</td>
+                <td class="text-center">{{ jugador.apellido2 }}</td>
+                <td class="text-center">{{ jugador.id_equipo }}</td>
+                <td class="text-center">{{ jugador.telefono }}</td>
+                <td>
+                    <a href="{% url 'deporApp:detalle_jugador' jugador.pk %}" style="display: inline-block; text-align: center; width: 100%; color: green; font-weight: bold;">Detalle</a>
+                    <a href="{% url 'deporApp:actualizar_jugador' jugador.pk %}" style="display: inline-block; text-align: center; width: 100%; color: darkblue; font-weight: bold;">Actualizar</a>
+                    <a href="{% url 'deporApp:borrar_jugador' jugador.pk %}" style="display: inline-block; text-align: center; width: 100%; color: brown; font-weight: bold;">Borrar</a>
+                   
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="text-center mt-4 mb-5">
+<a href="{% url 'deporApp:inicio' %}"><input type="button" class="btn btn-primary"  value="Volver a Inicio">&nbsp;&nbsp;</a>
+<a href="{% url 'deporApp:crear_jugador' %}"><input type="button" class="btn btn-primary"  value="Añadir Jugador"></a>
+</div>
+{% endblock %}

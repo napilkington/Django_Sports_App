@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %} Equipos {% endblock %}
+
+{% block cabecera %} 
+{% endblock %}
+
+{% block cuerpo %}
+<div class="text-center my-4">
+    <a href="{% url 'deporApp:inicio' %}"> <img  src="{% static 'img/logo.png' %}" alt="logo" > </a>
+</div>
+<h2 class="text-center mb-3" style="color: #1EB1BB; font-weight: bold;"> Equipo </h2>
+
+<div class="table-responsive">
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">ID</th>
+                <th class="text-center" scope="col">Equipo</th>
+                <th class="text-center" scope="col">Deporte</th>
+                <th class="text-center" scope="col">Equipacion principal</th>
+                <th class="text-center" scope="col">Equipación suplente</th>
+                <th class="text-center" scope="col">Contacto</th>
+                <th class="text-center" scope="col">Teléfono</th>
+                <th class="text-center" scope="col">Correo electrónico</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">{{ equipo.id_equipo }}</td>
+                <td class="text-center">{{ equipo.nombre }}</td>
+                <td class="text-center">{{ equipo.id_deporte }}</td>
+                <td class="text-center">{{ equipo.equipacion_principal }}</td>
+                <td class="text-center">{{ equipo.equipacion_suplente }}</td>
+                <td class="text-center">{{ equipo.contacto }}</td>
+                <td class="text-center">{{ equipo.telefono }}</td>
+                <td class="text-center">{{ equipo.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h2 class="text-center mt-3 mb-3" style="color: #1EB1BB; font-weight: bold;"> Jugadores </h2>
+<div class="table-responsive">
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th scope="col">Dorsal</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellidos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for jugador in jugadores %}
+            <tr>
+                <td>{{ jugador.dorsal }}</td>
+                <td>{{ jugador.nombre }}</td>
+                <td>{{ jugador.apellido1 }} {{ jugador.apellido2 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="text-center mt-4" >
+<a href="{% url 'deporApp:inicio' %}"><input type="button" class="btn btn-primary mb-3" value="Inicio">&nbsp;&nbsp;</a>
+<a href="{% url 'deporApp:crear_jugador' %}"><input type="button" class="btn btn-primary mb-3" value="Añadir jugador">&nbsp;&nbsp;</a>
+<a href="{% url 'deporApp:list_equipos' %}"><input type="button" class="btn btn-primary mb-3" value="Volver"></a>
+</div>
+{% endblock %}

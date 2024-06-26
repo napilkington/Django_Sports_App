@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %} Partidos {% endblock %}
+
+{% block cabecera %} 
+{% endblock %}
+
+{% block cuerpo %}
+<div class="text-center my-4">
+    <a href="{% url 'deporApp:inicio' %}"> <img  src="{% static 'img/logo.png' %}" alt="logo" > </a>
+</div>
+<h2 class="text-center mb-3" style="color: #1EB1BB; font-weight: bold;"> Partido </h2>
+
+<div class="table-responsive mb-3">
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">ID</th>
+                <th class="text-center" scope="col">Deporte</th>
+                <th class="text-center" scope="col">Fecha</th>
+                <th class="text-center" scope="col">Instalación</th>
+                <th class="text-center" scope="col">Equipo local</th>
+                <th class="text-center" scope="col">Equipo visitante</th>
+                <th class="text-center" scope="col">Puntos local</th>
+                <th class="text-center" scope="col">Puntos visitante</th>
+                <th class="text-center" scope="col">Observaciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">{{ partido.id_partido }}</td>
+                <td class="text-center">{{ partido.id_deporte }}</td>
+                <td>{{ partido.fecha_hora }}</td>
+                <td class="text-center">{{ partido.id_instalacion }}</td>
+                <td class="text-center">{{ partido.id_local }}</td>
+                <td class="text-center">{{ partido.id_visitante }}</td>
+                <td class="text-center">{{ partido.puntos_local }}</td>
+                <td class="text-center">{{ partido.puntos_visitante }}</td>
+                <td class="text-center">{{ partido.observaciones }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="text-center">
+<a href="{% url 'deporApp:inicio' %}"><input type="button" class="btn btn-primary mb-4"  value="Inicio">&nbsp;&nbsp;</a>
+<a href="{% url 'deporApp:list_partidos' %}"><input type="button" class="btn btn-primary mb-4" value="Volver"></a>
+</div>
+{% endblock %}

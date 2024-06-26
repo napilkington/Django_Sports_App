@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %} Deportes {% endblock %}
+
+{% block cabecera %} 
+{% endblock %}
+
+{% block cuerpo %}
+<div class="text-center my-4">
+    <a href="{% url 'deporApp:inicio' %}"> <img  src="{% static 'img/logo.png' %}" alt="logo" > </a>
+</div>
+<h2 class="text-center mb-4 " style="color: #1EB1BB; font-weight: bold;"> Deportes </h2>
+
+<div class="table-responsive">
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">ID</th>
+                <th class="text-center" scope="col">Deporte</th>
+                <th class="text-center" scope="col">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for deporte in object_list %}
+            <tr>
+                <td class="text-center">{{ deporte.id_deporte }}</td>
+                <td class="text-center">{{ deporte.nombre }}</td>
+                <td>
+                    <a href="{% url 'deporApp:actualizar_deporte' deporte.pk %}" style="display: inline-block; text-align: center; width: 100%; color: darkblue; font-weight: bold;">Actualizar</a>
+                    
+                    <a href="{% url 'deporApp:borrar_deporte' deporte.pk %}" style="display: inline-block; text-align: center; width: 100%; color: brown; font-weight: bold;">Borrar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="text-center mt-4 mb-5">
+<a href="{% url 'deporApp:inicio' %}"><input type="button" class="btn btn-primary" value="Volver a Inicio">&nbsp;&nbsp;</a> 
+<a href="{% url 'deporApp:crear_deporte' %}"><input type="button" class="btn btn-primary" value="Añadir Deporte"></a>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %} Equipos {% endblock %}
+
+{% block cabecera %} 
+{% endblock %}
+
+{% block cuerpo %}
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="Submit" class="btn btn-primary" value="Crear" />&nbsp;&nbsp;
+        <a href="{% url 'deporApp:list_equipos' %}"><input type="button" class="btn btn-primary" value="Cancelar"></a>
+    </form>
+{% endblock %}

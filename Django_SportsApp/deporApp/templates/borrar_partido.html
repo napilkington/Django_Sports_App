@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %} Partidos {% endblock %}
+
+{% block cabecera %} 
+{% endblock %}
+
+{% block cuerpo %}
+<div class="text-center my-4">
+    <a href="{% url 'deporApp:inicio' %}"> <img  src="{% static 'img/logo.png' %}" alt="logo" > </a>
+</div>
+    <form method="POST">
+        {% csrf_token %}
+        <p class="mt-5">¿Está seguro de que desea eliminar el partido?</p>
+        <input type="Submit" class="btn btn-primary" value="Borrar" />&nbsp;&nbsp;
+        <a href="{% url 'deporApp:list_partidos' %}"><input type="button" class="btn btn-primary" value="Cancelar"></a>
+    </form>
+{% endblock %}

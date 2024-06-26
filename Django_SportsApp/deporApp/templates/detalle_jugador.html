@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %} Jugadores {% endblock %}
+
+{% block cabecera %} 
+{% endblock %}
+
+{% block cuerpo %}
+<div class="text-center my-4">
+    <a href="{% url 'deporApp:inicio' %}"> <img  src="{% static 'img/logo.png' %}" alt="logo" > </a>
+</div>
+<h2 class="text-center mb-3" style="color: #1EB1BB; font-weight: bold;"> Jugador </h2>
+
+<div class="table-responsive mb-3">
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">ID</th>
+                <th class="text-center" scope="col">Nombre</th>
+                <th class="text-center" scope="col">Primer apellido</th>
+                <th class="text-center" scope="col">Segundo pellido</th>
+                <th class="text-center" scope="col">Equipo</th>
+                <th class="text-center" scope="col">Dorsal</th>
+                <th class="text-center" scope="col">Fecha de nacimiento</th>
+                <th class="text-center" scope="col">Altura</th>
+                <th class="text-center" scope="col">Peso</th>
+                <th class="text-center" scope="col">Teléfono</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">{{ jugador.id_jugador }}</td>
+                <td class="text-center">{{ jugador.nombre }}</td>
+                <td class="text-center">{{ jugador.apellido1 }}</td>
+                <td class="text-center">{{ jugador.apellido2 }}</td>
+                <td class="text-center">{{ jugador.id_equipo }}</td>
+                <td class="text-center">{{ jugador.dorsal }}</td>
+                <td class="text-center">{{ jugador.fecha_nacimiento }}</td>
+                <td class="text-center">{{ jugador.altura }}</td>
+                <td class="text-center">{{ jugador.peso }}</td>
+                <td class="text-center">{{ jugador.telefono }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="text-center">
+<a href="{% url 'deporApp:inicio' %}"><input type="button" class="btn btn-primary mb-4" value="Inicio">&nbsp;&nbsp;</a>
+<a href="{% url 'deporApp:list_jugadores' %}"><input type="button" class="btn btn-primary mb-4" value="Volver"></a>
+</div>
+{% endblock %}

@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% load static %}
+{% block titulo %} Inicio {% endblock %}
+{% block cabecera %} 
+<style>
+    .login-button {
+
+        width: 100%;
+        text-align: right;
+        margin-top: 2em;  
+        
+    }
+
+    .btn-custom {
+        background-color: #1EB1BB;
+         
+    }
+
+    .btn-custom:hover {
+        background-color: #1EB1BB;
+         
+    }
+</style>
+   
+{% endblock %}
+
+{% block cuerpo %}
+<div class="login-button ">
+    <a href="{% url 'admin:index' %}" class="btn btn-custom text-white" style="font-size: .9em;">Admin</a>
+</div>
+
+<div class="text-center mt-4">
+    <img  src="{% static 'img/logo.png' %}" alt="logo" >
+</div>
+<h1 class="text-center mb-4"> Patronato de Deportes de Torremolinos </h1>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4" style="padding: 0; border-radius: 10px">
+    <div class="container-fluid">
+      <ul class="navbar-nav w-100 d-flex justify-content-around">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'deporApp:list_deportes' %}">Deportes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'deporApp:list_equipos' %}">Equipos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'deporApp:list_instalaciones' %}">Instalaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'deporApp:list_jugadores' %}">Jugadores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{% url 'deporApp:list_partidos' %}">Partidos</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+    
+
+    
+    <style>
+        /* Establece un tamaño específico para las imágenes del carrusel */
+        #carouselExampleIndicators .carousel-item img {
+            width: 100%;
+            height: 500px; /* Altura específica para todas las imágenes */
+            object-fit: cover; /* Ajusta la imagen para cubrir el tamaño del contenedor */
+       
+        }
+        #fuente{
+            font-size: .9em;
+        }
+
+       
+    </style>
+    
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'img/natacion.jpg' %}" class="d-block" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'img/basket.jpg' %}" class="d-block" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'img/futbol.jpg' %}" class="d-block" alt="...">
+            </div>
+            
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+<br><br>
+
+
+<div class="container bg-primary p-4 rounded" style="width: 100%; height: auto;">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="table-responsive">
+                <h4 class="text-center text-white pb-3">Últimos 5 partidos</h4>
+                <table class="table table-dark"> 
+                    <thead>
+                        <tr>
+                            <th id="fuente" class="fw-normal">Fecha</th>
+                            <th id="fuente" class="fw-normal">Equipo Local</th>
+                            <th id="fuente" class="fw-normal">Equipo Visitante</th>
+                            <th id="fuente" class="fw-normal">Resultado</th>                                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for partido in ultimos %}
+                        <tr>
+                            <td>{{ partido.fecha_hora }}</td>
+                            <td>{{ partido.id_local }}</td>
+                            <td>{{ partido.id_visitante }}</td>
+                            <td>{{ partido.puntos_local }} - {{ partido.puntos_visitante }}</td>                                   
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="table-responsive">
+                <h4 class="text-center text-white pb-3">Próximos 5 partidos</h4>
+                <table class="table table-dark"> 
+                    <thead>
+                        <tr>
+                            <th id="fuente" class="fw-normal " >Fecha y Hora</th>
+                            <th id="fuente" class="fw-normal ">Equipo Local</th>
+                            <th id="fuente" class="fw-normal ">Equipo Visitante</th>                                                                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for partido in proximos %}
+                        <tr>
+                            <td id="fuente">{{ partido.fecha_hora }}</td>  
+                            <td id="fuente">{{ partido.id_local }}</td>
+                            <td id="fuente">{{ partido.id_visitante }}</td>                                          
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>   
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
